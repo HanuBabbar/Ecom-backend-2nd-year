@@ -4,10 +4,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-
-const userRoutes = require('./routes/users'); // path may vary
-app.use('/users', userRoutes);
-
+// Connect to MongoDB
 mongoose.connect("mongodb://127.0.0.1:27017/ecom-db", {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -15,25 +12,30 @@ mongoose.connect("mongodb://127.0.0.1:27017/ecom-db", {
 .then(() => console.log("✅ Connected to MongoDB"))
 .catch(err => console.error("❌ MongoDB connection error:", err));
 
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // For form data
 
-// Set EJS as the view engine
+
+// View engine setup
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-
-// Serve static files (like CSS)
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Dummy route to load frontend
-app.get('/', (req, res) => {
-  const users = [
-    { _id: 1, name: "Hanu", email: "hanu@email.com" },
-    { _id: 2, name: "Mahi", email: "mahi@email.com" },
-    // add more dummy users if needed
-  ];
+// Routes
+const userRoutes = require('./routes/users');
+app.use('/users', userRoutes);
 
-  res.render('index', { users }); // ✅ pass the users to the template
+app.get('/', async (req, res) => {
+  try {
+    // Assuming you have a User model
+    const users = await User.find({});
+    res.render('index', { users });
+  } catch (err) {
+    console.error(err);
+    res.render('index', { users: [] });
+  }
 });
-
 
 // Start server
 const PORT = process.env.PORT || 3000;
