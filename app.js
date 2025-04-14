@@ -29,11 +29,8 @@ const userRoutes = require('./routes/users');
 app.use('/users', userRoutes);
 
 app.get('/', (req, res) => {
-  const users = [
-    { _id: 1, name: "Hanu", email: "hanu@email.com" },
-    { _id: 2, name: "Mahi", email: "mahi@email.com" },
-  ];
-  res.render('index', { users });
+  
+  res.render('index', { users: [] });
 });
 
 // Start server
