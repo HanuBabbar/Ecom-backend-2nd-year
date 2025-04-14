@@ -8,7 +8,7 @@ const methodOverride = require('method-override');
 
 
 // Connect to MongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/ecom-db", {
+mongoose.connect("mongodb+srv://hanubabbar:hanu4321@ecom.gjo0uz5.mongodb.net/ecom-db?retryWrites=true&w=majority&appName=Ecom", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })

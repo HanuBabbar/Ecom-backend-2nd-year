@@ -92,9 +92,18 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) =>{
-  await User.findByIdAndDelete(req.params.id);
-  res.redirect('/users');
-})
+// =====================
+// Delete User
+// =====================
+router.delete('/:id', async (req, res) => {
+  try {
+    await User.findByIdAndDelete(req.params.id);
+    res.redirect('/users');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
+});
+
 
 module.exports = router;
