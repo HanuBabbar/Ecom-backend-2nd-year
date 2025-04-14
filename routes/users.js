@@ -27,5 +27,26 @@ router.get('/:id', async (req, res ) => {
   }
 });
 
+router.get('/:id/edit', async (req, res) =>{
+  try {
+    const user = await User.findById(req.params.id);
+    res.render('pages/edit', {user});
+  } catch (err) {
+    console.error(err);
+    res.redirect('/users');
+  }
+})
+
+router.put('/:id', async (req, res) => {
+  try{
+    const {name, email } = req.body;
+    await User.findByIdAndUpdate(req.params.id, {name, email});
+    res.redirect('/users/'+req.params.id);
+  } catch(err) {
+    console.error(err);
+    res.redirect('/');
+  }
+})
+
 
 module.exports = router;

@@ -4,6 +4,9 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+const methodOverride = require('method-override');
+
+
 // Connect to MongoDB
 mongoose.connect("mongodb://127.0.0.1:27017/ecom-db", {
   useNewUrlParser: true,
@@ -12,11 +15,15 @@ mongoose.connect("mongodb://127.0.0.1:27017/ecom-db", {
 .then(() => console.log("✅ Connected to MongoDB"))
 .catch(err => console.error("❌ MongoDB connection error:", err));
 
+app.use(methodOverride('_method'));
+
 // View engine setup
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//url encoded
+app.use(express.urlencoded({ extended: true }));
 // Routes
 const userRoutes = require('./routes/users');
 app.use('/users', userRoutes);
