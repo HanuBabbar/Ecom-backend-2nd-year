@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/css/styles.css"> <!-- Add your CSS file path -->
+</head>
+<body>
+  <%- include('../partials/header.ejs') %> <!-- Include header partial -->
+
+  <div class="container">
+    <h1>Welcome to your Dashboard</h1>
+    <p><strong>Name:</strong> <%= user.name %></p>
+    <p><strong>Email:</strong> <%= user.email %></p>
+    
+    <div class="dashboard-buttons">
+      <a href="/cart" class="btn">Go to Cart</a>
+      <a href="/products" class="btn">Browse Products</a>
+    </div>
+  </div>
+
+  <%- include('../partials/footer.ejs') %> <!-- Include footer partial -->
+</body>
+</html>

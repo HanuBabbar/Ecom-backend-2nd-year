@@ -1,5 +1,7 @@
 const express = require('express');
 const Product = require('../models/Product');
+const productController = require('../controllers/productController');
+const { verifyToken } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
@@ -22,6 +24,12 @@ router.post('/', async (req, res) => {
         res.status(500).json({ msg: err.message });
     }
 });
+
+// Route to render products page
+router.get('/products', verifyToken, productController.getProducts);
+
+// Route to render cart page
+router.get('/cart', verifyToken, productController.getCart);
 
 router.get('/test', (req, res) => {
     res.json({ msg: "User routes are working!" });

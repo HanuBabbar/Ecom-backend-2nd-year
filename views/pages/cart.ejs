@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart</title>
+  <link rel="stylesheet" href="/css/styles.css"> <!-- Add your CSS file path -->
+</head>
+<body>
+  <%- include('../partials/header.ejs') %> <!-- Include header partial -->
+
+  <div class="container">
+    <h1>Your Cart</h1>
+    <div class="cart-items">
+      <div class="cart-item">
+        <h2>Product 1</h2>
+        <p>Quantity: 2</p>
+        <p>Price: $20</p>
+        <button>Remove</button>
+      </div>
+      <div class="cart-item">
+        <h2>Product 2</h2>
+        <p>Quantity: 1</p>
+        <p>Price: $10</p>
+        <button>Remove</button>
+      </div>
+    </div>
+    <div class="cart-total">
+      <h3>Total: $50</h3>
+      <button>Checkout</button>
+    </div>
+  </div>
+
+  <%- include('../partials/footer.ejs') %> <!-- Include footer partial -->
+</body>
+</html>

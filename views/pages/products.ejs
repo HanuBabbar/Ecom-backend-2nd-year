@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products</title>
+  <link rel="stylesheet" href="/css/styles.css"> <!-- Add your CSS file path -->
+</head>
+<body>
+  <%- include('../partials/header.ejs') %> <!-- Include header partial -->
+
+  <div class="container">
+    <h1>Products</h1>
+    <div class="product-list">
+      <div class="product">
+        <h2>Product 1</h2>
+        <p>Description of Product 1</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="product">
+        <h2>Product 2</h2>
+        <p>Description of Product 2</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <%- include('../partials/footer.ejs') %> <!-- Include footer partial -->
+</body>
+</html>

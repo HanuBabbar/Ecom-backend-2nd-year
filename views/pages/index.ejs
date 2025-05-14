@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Ecom</title>
+  <link rel="stylesheet" href="/css/styles.css"> <!-- Add your CSS file path -->
+</head>
+<body>
+  <%- include('../partials/header.ejs') %> <!-- Include header partial -->
+
+  <div class="container">
+    <h1>Welcome to Ecom</h1>
+    <p>Your one-stop shop for all your needs!</p>
+    <div class="auth-buttons">
+      <a href="/auth/login" class="btn">Login</a>
+      <a href="/auth/signup" class="btn">Signup</a>
+    </div>
+  </div>
+
+  <%- include('../partials/footer.ejs') %> <!-- Include footer partial -->
+</body>
+</html>
