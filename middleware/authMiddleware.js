@@ -14,6 +14,10 @@ exports.verifyToken = async (req, res, next) => {
     const decoded = jwt.verify(token, JWT_SECRET);
     req.user = await User.findById(decoded.userId);
 
+    console.log('Auth Token:', token);
+    console.log('Decoded Token:', decoded);
+    console.log('User Retrieved:', req.user);
+
     if (!req.user) {
       return res.status(401).send('Invalid token.');
     }

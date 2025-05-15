@@ -29,6 +29,7 @@ exports.postSignup = async (req, res) => {
 exports.postLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
+    // console.log(req.body);
     const user = await User.findOne({ email });
 
     if (!user || user.password !== password) {

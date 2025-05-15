@@ -33,15 +33,14 @@ app.use(express.urlencoded({ extended: true }));
 const userRoutes = require('./routes/users');
 app.use('/users', userRoutes);
 
-const productRoutes = require('./routes/productRoutes');
-app.use('/products', productRoutes);
-app.use('/cart', productRoutes);
-
 //landing page
 app.get('/', (req, res) => {
-  
   res.render('pages/index', { users: [] });
 });
+
+// Move productRoutes below the landing page route
+const productRoutes = require('./routes/productRoutes');
+app.use('/', productRoutes);
 
 // Example of protecting a route
 app.get('/protected', verifyToken, (req, res) => {

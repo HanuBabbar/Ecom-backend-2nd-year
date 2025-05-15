@@ -11,20 +11,36 @@
 
   <div class="container">
     <h1>Your Cart</h1>
-    <div class="cart-items">
-      <div class="cart-item">
-        <h2>Product 1</h2>
-        <p>Quantity: 2</p>
-        <p>Price: $20</p>
-        <button>Remove</button>
-      </div>
-      <div class="cart-item">
-        <h2>Product 2</h2>
-        <p>Quantity: 1</p>
-        <p>Price: $10</p>
-        <button>Remove</button>
-      </div>
+    <div id="cart-products">
+      <!-- Products will be dynamically rendered here -->
     </div>
+    <script>
+      async function fetchCartProducts() {
+        try {
+          const response = await fetch('/products/cart-products');
+          const products = await response.json();
+
+          const container = document.getElementById('cart-products');
+          container.innerHTML = '';
+
+          products.forEach(product => {
+            const productDiv = document.createElement('div');
+            productDiv.className = 'cart-item';
+            productDiv.innerHTML = `
+              <h2>${product.name}</h2>
+              <p>Price: $${product.price}</p>
+              <p>Stock: ${product.stock}</p>
+            `;
+            container.appendChild(productDiv);
+          });
+        } catch (error) {
+          console.error('Error fetching products:', error);
+        }
+      }
+
+      // Fetch products on page load
+      fetchCartProducts();
+    </script>
     <div class="cart-total">
       <h3>Total: $50</h3>
       <button>Checkout</button>

@@ -10,20 +10,42 @@
   <%- include('../partials/header.ejs') %> <!-- Include header partial -->
 
   <div class="container">
-    <h1>Products</h1>
-    <div class="product-list">
-      <div class="product">
-        <h2>Product 1</h2>
-        <p>Description of Product 1</p>
-        <button>Add to Cart</button>
-      </div>
-      <div class="product">
-        <h2>Product 2</h2>
-        <p>Description of Product 2</p>
-        <button>Add to Cart</button>
-      </div>
+    <h1>Our Products</h1>
+    <div class="product-grid">
+      <% products.forEach(product => { %>
+        <div class="product-card">
+          <img src="<%= product.image %>" alt="<%= product.name %>">
+          <h3><%= product.name %></h3>
+          <p><%= product.description %></p>
+          <p>Price: $<%= product.price %></p>
+          <p>Stock: <%= product.stock %></p>
+          <button onclick="addToCart('<%= product._id %>')">Add to Cart</button>
+        </div>
+      <% }) %>
     </div>
   </div>
+
+  <script>
+    async function addToCart(productId) {
+      try {
+        const response = await fetch('/products/add-to-cart', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ productId }),
+        });
+
+        if (response.ok) {
+          alert('Product added to cart');
+        } else {
+          alert('Failed to add product to cart');
+        }
+      } catch (error) {
+        console.error('Error adding to cart:', error);
+      }
+    }
+  </script>
 
   <%- include('../partials/footer.ejs') %> <!-- Include footer partial -->
 </body>
