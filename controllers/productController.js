@@ -4,7 +4,7 @@ const User = require('../models/User');
 
 exports.getProducts = async (req, res) => {
     try {
-        const products = await Product.find(); // Fetch all products from MongoDB
+        const products = await Product.find().lean(); // Fetch all products from MongoDB
         res.render('pages/products', { products }); // Pass products to the EJS template
     } catch (error) {
         console.error('Error fetching products:', error);

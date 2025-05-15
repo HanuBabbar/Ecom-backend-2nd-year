@@ -33,7 +33,7 @@
           .find(row => row.startsWith('authToken='))
           ?.split('=')[1];
 
-        const response = await fetch('/products/add-to-cart', {
+        const response = await fetch('/add-to-cart', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

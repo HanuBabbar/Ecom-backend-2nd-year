@@ -18,6 +18,7 @@ mongoose.connect("mongodb+srv://hanubabbar:hanu4321@ecom.gjo0uz5.mongodb.net/eco
 .then(() => console.log("✅ Connected to MongoDB"))
 .catch(err => console.error("❌ MongoDB connection error:", err));
 
+app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(cookieParser()); // Middleware to parse cookies
 
